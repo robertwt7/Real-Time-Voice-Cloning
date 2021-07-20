@@ -63,3 +63,60 @@ or
 `python demo_toolbox.py`  
 
 depending on whether you downloaded any datasets. If you are running an X-server or if you have the error `Aborted (core dumped)`, see [this issue](https://github.com/CorentinJ/Real-Time-Voice-Cloning/issues/11#issuecomment-504733590).
+
+
+## Setup - Windows
+
+### Get files for Real-Time-Voice-Cloning
+1. Download this file to get the latest version of Real-Time-Voice-Cloning: https://github.com/CorentinJ/Real-Time-Voice-Cloning/archive/master.zip
+2. Extract it to C:\ The files will be in a folder called Real-Time-Voice-Cloning-master
+
+### Install Python
+3. Download Python from here: https://www.python.org/ftp/python/3.7.9/python-3.7.9-amd64.exe
+    - Warning: Other versions of Python will not work.
+    - Warning: Do not install Python from the Windows Store.
+4. Run the installer. Click the "Install Now" button. Do not change the defaults.
+5. Exit the installer when complete. Do not disable the path length limit.
+6. Edit the environment variables for your account. Add these locations to PATH. First is for python.exe, second is for pip.exe. Move these to the top to take precedence over any pre-existing Python installations.
+
+```
+%USERPROFILE%\AppData\Local\Programs\Python\Python37
+%USERPROFILE%\AppData\Roaming\Programs\Python\Python37\Scripts
+```
+
+
+### Set up virtual environment and install required packages
+7. Open Windows command prompt and run these commands to set up and activate a virtual environment. Real-Time-Voice-Cloning needs this dedicated environment as it uses obsolete packages that could cause conflicts with other Python programs.
+
+```
+cd C:\Real-Time-Voice-Cloning-master
+python -m venv venv
+venv\Scripts\activate.bat
+```
+
+8. Next, run these commands to install Python packages. See pytorch specific installation [here](https://pytorch.org/get-started/locally/)
+```
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+### Get FFmpeg
+9. Download FFmpeg from here: https://github.com/BtbN/FFmpeg-Builds/releases/tag/autobuild-2021-07-20-12-38
+10. Extract the zip file. Move ffmpeg.exe to C:\Real-Time-Voice-Cloning-master (the same folder as demo_toolbox.py)
+
+### Pretrained models
+11. Download pretrained models from: https://github.com/blue-fish/Real-Time-Voice-Cloning/releases/download/v1.0/pretrained.zip
+12. Extract pretrained.zip. Move the included files to the below locations:
+```
+C:\Real-Time-Voice-Cloning-master\encoder\saved_models\pretrained.pt
+C:\Real-Time-Voice-Cloning-master\synthesizer\saved_models\pretrained\pretrained.pt
+C:\Real-Time-Voice-Cloning-master\vocoder\saved_models\pretrained\pretrained.pt
+```
+
+### Launching the toolbox
+Open Windows command prompt and type:
+```
+cd C:\Real-Time-Voice-Cloning-master
+venv\Scripts\activate.bat
+python demo_toolbox.py
+```
